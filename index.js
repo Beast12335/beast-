@@ -1,6 +1,6 @@
 const lib = require('lib')({token: process.env['token']});
 const mySecret = process.env['dtoken']
-const Client, GatewayIntentBits = require('discord.js');
+const {Client, GatewayIntentBits} = require('discord.js');
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMessages] });
 
 client.on('ready', () => {
