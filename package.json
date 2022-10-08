@@ -5,7 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "discord.js": "^13.1.0",
-    "lib":"^4.3.3"
+    "lib":"^4.3.3",
+    "clashofclans.js":"^2.8.4"
   },
   "devDependencies": {},
   "scripts": {
