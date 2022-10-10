@@ -62,7 +62,7 @@ beast.on('attackChange', (oldWar, newWar) => {
 (async function () {
 	await beast.login({email:process.env.mail,password:process.env.pass})
 	client.on('messageCreate', async(message) => {
-		if (message.channel_id == '1028321836666200185') {
+		if (message.channelId == '1028321836666200185') {
 			console.log(message)
 			var clan = await beast.getClan(message.content)
 			beast.events.addWars(['message.content']);
