@@ -72,6 +72,13 @@ let b = await lib.mysql.db['@0.2.1'].query({
   query: `insert into players values('${clan.members[i].name}','${clan.members[i].tag}','0','0','0','0','0');`,
   charset: `UTF8MB4`
 });
+beast.on('attackChange', (oldWar, newWar) => {
+    console.log(oldWar.clan.attackCount, newWar.attackCount);
+return lib.discord.channels['@0.3.2'].messages.create({
+  channel_id: `860512303233236995`,
+  content: `<@849123406477656086>`
+})
+});
     await beast.events.init();
 })();
 
