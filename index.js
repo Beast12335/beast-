@@ -74,7 +74,7 @@ beast.on('attackChange', (oldWar, newWar) => {
 }
 			}
 		});
-	beast.on('attackChange', (oldWar, newWar) => {
+	beast.on('attackChange',async(oldWar, newWar) => {
              console.log(oldWar.clan.attackCount, newWar.clan.attackCount);
              if (attacks[attacks.length-1].stars === '3'){
 			await lib.mysql.db['@0.2.1'].query({
