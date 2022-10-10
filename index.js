@@ -61,7 +61,7 @@ beast.on('attackChange', (oldWar, newWar) => {
 });
 (async function () {
 	await beast.login({email:process.env.mail,password:process.env.pass})
-	client.on('messageCreate', (message) => {
+	client.on('messageCreate', async(message) => {
 		if (message.channel_id == '1028321836666200185') {
 			console.log(message)
 			var clan = await beast.getClan(message.content)
@@ -73,6 +73,7 @@ beast.on('attackChange', (oldWar, newWar) => {
 });
 }
 			}
+		});
 	beast.on('attackChange', (oldWar, newWar) => {
              console.log(oldWar.clan.attackCount, newWar.attackCount);
              return lib.discord.channels['@0.3.2'].messages.create({
@@ -84,5 +85,3 @@ beast.on('attackChange', (oldWar, newWar) => {
 })();
 
 client.login(mySecret) 
-
-
