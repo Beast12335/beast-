@@ -57,7 +57,7 @@ beast.events.setWarEvent({
     }
 });
 beast.on('attackChange', (oldWar, newWar) => {
-    console.log(oldWar.clan.attackCount, newWar.attackCount);
+    console.log(oldWar.clan.attackCount, newWar.clan.attackCount);
 });
 (async function () {
 	await beast.login({email:process.env.mail,password:process.env.pass})
@@ -75,7 +75,7 @@ beast.on('attackChange', (oldWar, newWar) => {
 			}
 		});
 	beast.on('attackChange', (oldWar, newWar) => {
-             console.log(oldWar.clan.attackCount, newWar.attackCount);
+             console.log(oldWar.clan.attackCount, newWar.clan.attackCount);
              return lib.discord.channels['@0.3.2'].messages.create({
                  channel_id: `860512303233236995`,
                  content: `<@849123406477656086>`
