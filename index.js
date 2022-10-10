@@ -65,6 +65,7 @@ beast.on('attackChange', (oldWar, newWar) => {
 		if (message.channelId == '1028321836666200185') {
 			console.log(message)
 			var clan = await beast.getClan(message.content)
+                        var attacks = await clan.clan.attacks
 			beast.events.addWars(['message.content']);
 			for (let i=0;i<clan.members.length;i++) {
 				let b = await lib.mysql.db['@0.2.1'].query({
@@ -74,35 +75,35 @@ beast.on('attackChange', (oldWar, newWar) => {
 }
 			}
 		});
-	beast.on('attackChange',async(oldWar, newWar) => {
-             console.log(oldWar.clan.attackCount, newWar.clan.attackCount);
-             if (attacks[attacks.length-1].stars === '3'){
-			await lib.mysql.db['@0.2.1'].query({
-  query: `update players set three = ${three+1} where tag = ${attacks[attacks.length-1].attackerTag};`,
-  charset: `UTF8MB4`
+	         beast.on('attackChange',async(oldWar, newWar) => {
+                        console.log(oldWar.clan.attackCount, newWar.clan.attackCount);
+                        if (attacks[attacks.length-1].stars === '3'){
+			       await lib.mysql.db['@0.2.1'].query({
+                                      query: `update players set three = ${three+1} where tag = ${attacks[attacks.length-1].attackerTag};`,
+                                      charset: `UTF8MB4`
 });
 		}
-             if (attacks[attacks.length-1].stars === '2'){
-			await lib.mysql.db['@0.2.1'].query({
-  query: `update players set two = ${two+1} where tag = ${attacks[attacks.length-1].attackerTag};`,
-  charset: `UTF8MB4`
+                       if (attacks[attacks.length-1].stars === '2'){
+			        await lib.mysql.db['@0.2.1'].query({
+                                       query: `update players set two = ${two+1} where tag = ${attacks[attacks.length-1].attackerTag};`,
+                                       charset: `UTF8MB4`
 });
 					}
-             if (attacks[attacks.length-1].stars === '1'){
-			await lib.mysql.db['@0.2.1'].query({
-  query: `update players set one = ${one+1} where tag = ${attacks[attacks.length-1].attackerTag};`,
-  charset: `UTF8MB4`
+                       if (attacks[attacks.length-1].stars === '1'){
+			        await lib.mysql.db['@0.2.1'].query({
+                                       query: `update players set one = ${one+1} where tag = ${attacks[attacks.length-1].attackerTag};`,
+                                       charset: `UTF8MB4`
 });
 		}
-             if (attacks[attacks.length-1].stars === '0'){
-			await lib.mysql.db['@0.2.1'].query({
-  query: `update players set zero = ${zero+1} where tag = ${attacks[attacks.length-1].attackerTag};`,
-  charset: `UTF8MB4`
+                       if (attacks[attacks.length-1].stars === '0'){
+			        await lib.mysql.db['@0.2.1'].query({
+                                       query: `update players set zero = ${zero+1} where tag = ${attacks[attacks.length-1].attackerTag};`,
+                                       charset: `UTF8MB4`
 });
 		}
-             return lib.discord.channels['@0.3.2'].messages.create({
-                 channel_id: `860512303233236995`,
-                 content: `<@849123406477656086>`
+                       return lib.discord.channels['@0.3.2'].messages.create({
+                               channel_id: `860512303233236995`,
+                               content: `<@849123406477656086>`
 })
 });
     await beast.events.init();
