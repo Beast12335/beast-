@@ -61,27 +61,27 @@ beast.on('attackChange', (oldWar, newWar) => {
 });
 (async function () {
 	await beast.login({email:process.env.mail,password:process.env.pass})
-client.on('messageCreate', (message) => {
-  if (message.channel_id == '1028321836666200185') {
-    console.log(message)
-var clan = await beast.getClan(message.content)
-beast.events.addWars(['message.content']);
-
-for (let i=0;i<clan.members.length;i++) {
-let b = await lib.mysql.db['@0.2.1'].query({
+	client.on('messageCreate', (message) => {
+		if (message.channel_id == '1028321836666200185') {
+			console.log(message)
+			var clan = await beast.getClan(message.content)
+			beast.events.addWars(['message.content']);
+			for (let i=0;i<clan.members.length;i++) {
+				let b = await lib.mysql.db['@0.2.1'].query({
   query: `insert into players values('${clan.members[i].name}','${clan.members[i].tag}','0','0','0','0','0');`,
   charset: `UTF8MB4`
 });
-beast.on('attackChange', (oldWar, newWar) => {
-    console.log(oldWar.clan.attackCount, newWar.attackCount);
-return lib.discord.channels['@0.3.2'].messages.create({
-  channel_id: `860512303233236995`,
-  content: `<@849123406477656086>`
+}
+			}
+	beast.on('attackChange', (oldWar, newWar) => {
+             console.log(oldWar.clan.attackCount, newWar.attackCount);
+             return lib.discord.channels['@0.3.2'].messages.create({
+                 channel_id: `860512303233236995`,
+                 content: `<@849123406477656086>`
 })
 });
     await beast.events.init();
 })();
-
 
 client.login(mySecret) 
 
