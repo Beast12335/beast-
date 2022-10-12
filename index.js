@@ -22,16 +22,6 @@ client.on('messageCreate', (message) => {
 })
 const {Client:ClashClient} = require('clashofclans.js');
 const beast = new ClashClient() 
-beast.events.addWars(['#2YVLLLL28','#2QLCCPQUR']);
-beast.events.setWarEvent({
-    name: 'clanDescriptionChange',
-    filter: (oldWar, newWar) => {
-        return oldWar.state !== newWar.state;
-    }
-});
-beast.on('clanDescriptionChange', (oldWar, newWar) => {
-    console.log(oldWar.state, newWar.state);
-});
 beast.events.addPlayers(['#PV0G8V8V8']);
 beast.events.setPlayerEvent({
     name: 'playerChange',
