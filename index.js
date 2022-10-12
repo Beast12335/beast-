@@ -6,7 +6,6 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBit
 client.on('ready', () => {
   console.log(`logged in!`)
 })
-
 client.on('messageCreate', (message) => {
   if (message.content == 'ping') {
     console.log(message)
@@ -23,24 +22,32 @@ client.on('messageCreate', (message) => {
 })
 const {Client:ClashClient} = require('clashofclans.js');
 const beast = new ClashClient() 
-beast.events.addPlayers(['#8P2QG08P']);
+beast.events.addWars(['#2YVLLLL28','#2QLCCPQUR']);
+beast.events.setWarEvent({
+    name: 'clanDescriptionChange',
+    filter: (oldWar, newWar) => {
+        return oldWar.state !== newWar.state;
+    }
+});
+beast.on('clanDescriptionChange', (oldWar, newWar) => {
+    console.log(oldWar.state, newWar.state);
+});
+beast.events.addPlayers(['#PV0G8V8V8']);
 beast.events.setPlayerEvent({
     name: 'playerChange',
     filter: (oldPlayer, newPlayer) => {
         return oldPlayer.warOptedIn !== newPlayer.warOptedIn;
     }
 });
-
-beast.on('playerChange', async(oldPlayer, newPlayer) => {
+beast.on('playerChange', (oldPlayer, newPlayer) => {
     console.log(oldPlayer.warOptedIn, newPlayer.warOptedIn);
-    await lib.discord.channels['@0.3.2'].messages.create({
+return lib.discord.channels['@0.3.2'].messages.create({
   channel_id: `860512303233236995`,
-  content: `Beast `
+  content: `<@849123406477656086>`
+})
 });
-});
-
 (async function () {
-    await beast.login({ email: process.env.mail, password: process.env.password });
+	await beast.login({email:process.env.mail,password:process.env.pass})
     await beast.events.init();
 })();
 client.login(mySecret)
