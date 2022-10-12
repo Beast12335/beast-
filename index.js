@@ -37,6 +37,27 @@ return lib.discord.channels['@0.3.2'].messages.create({
 })
 });
 (async function () {
+  client.on('messageCreate', (message) => {
+    if (message.channelId == '1028321836666200185') {
+      console.log(message)
+      var clan = await beast.getClan(message.content)
+      var attacks = await clan.clan.attacks			
+      beast.events.addWars(['message.content']);
+      for (let i=0;i<clan.members.length;i++) {
+        let b = await lib.mysql.db['@0.2.1'].query({
+          query: `insert into players values('${clan.members[i].name}','${clan.members[i].tag}','0','0','0','0','0');`, 
+          charset: `UTF8MB4`});
+          }
+          }
+      });
+})();
+beast.events.setWarEvent({
+  name: 'attackChange',
+  filter: (oldWar, newWar) => {
+    return oldWar.clan.attackCount !== newWar.clan.attackCount; 
+    }
+});
+(async function () {
 	await beast.login({email:process.env.mail,password:process.env.pass})
     await beast.events.init();
 })();
