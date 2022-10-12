@@ -37,7 +37,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
 })
 });
 (async function () {
-  client.on('messageCreate', (message) => {
+  client.on('messageCreate', async(message) => {
     if (message.channelId == '1028321836666200185') {
       console.log(message)
       var clan = await beast.getClan(message.content)
