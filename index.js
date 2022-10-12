@@ -45,9 +45,9 @@ beast.events.setPlayerEvent({
 
 beast.on('playerChange', (oldPlayer, newPlayer) => {
     console.log(oldPlayer.warOptedIn, newPlayer.warOptedIn);
-return lib.discord.channels['@0.3.2'].messages.create({
-  channel_id: `860512303233236995`,
-  content: `<@849123406477656086>`
+    return lib.discord.channels['@0.3.2'].messages.create({
+      channel_id: `860512303233236995`,
+      content: `<@849123406477656086>`
 })
 });
 beast.events.setWarEvent({
