@@ -59,6 +59,7 @@ beast.events.setWarEvent({
 });
 beast.on('attackChange',async(oldWar, newWar) => {
   console.log(oldWar.clan.attackCount, newWar.clan.attackCount);
+  var attacks = await beast.getWar(oldWar.clan.tag)
   if (attacks[attacks.length-1].stars === '3'){
     await lib.mysql.db['@0.2.1'].query({
       query: `update players set three = ${three+1} where tag = ${attacks[attacks.length-1].attackerTag};`,
