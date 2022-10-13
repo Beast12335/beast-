@@ -45,7 +45,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
       beast.events.addWars(['message.content']);
       for (let i=0;i<clan.members.length;i++) {
         let b = await lib.mysql.db['@0.2.1'].query({
-          query: `insert into players values('${clan.members[i].name}','${clan.members[i].tag}','0','0','0','0','0');`, 
+          query: `insert into players values('${clan.members[i].name}','${clan.members[i].tag}','0','0','0','0','0','0');`, 
           charset: `UTF8MB4`});
           }
           }
@@ -62,7 +62,7 @@ beast.on('attackChange',async(oldWar, newWar) => {
   var attacks = await beast.getWar(oldWar.clan.tag)
   if (attacks[attacks.length-1].stars === '3'){
     await lib.mysql.db['@0.2.1'].query({
-      query: `update players set three = ${three+1} where tag = ${attacks[attacks.length-1].attackerTag};`,
+      query: `update players set triple = ${triple+1} where tag = ${attacks[attacks.length-1].attackerTag};`,
       charset: `UTF8MB4`
 });
 }
