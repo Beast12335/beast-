@@ -66,29 +66,31 @@ beast.on('stateChange',async(oldWar, newWar) => {
   }); }
   else if(newWar.state === 'ENDED') {
     var attacks = await beast.getWar(oldWar.clan.tag)
-    if (attacks[attacks.length-1].stars === '3'){
-      await lib.mysql.db['@0.2.1'].query({
-        query: `update players set triple = ${triple+1} where tag = ${attacks[attacks.length-1].attackerTag};`,
-        charset: `UTF8MB4`
+    for (let i=0;i<attacks.length;i++) {
+      if (attacks[i].stars === '3'){
+        await lib.mysql.db['@0.2.1'].query({
+          query: `update players set triple = ${triple+1} where tag = ${attacks[i].attackerTag};`,
+          charset: `UTF8MB4`
 });
 }
-    else if (attacks[attacks.length-1].stars === '2'){
-      await lib.mysql.db['@0.2.1'].query({
-        query: `update players set two = ${two+1} where tag = ${attacks[attacks.length-1].attackerTag};`,
-        charset: `UTF8MB4`
+      else if (attacks[i].stars === '2'){
+        await lib.mysql.db['@0.2.1'].query({
+          query: `update players set two = ${two+1} where tag = ${attacks[i].attackerTag};`,
+          charset: `UTF8MB4`
 });
   }
-    else if (attacks[attacks.length-1].stars === '1'){
-      await lib.mysql.db['@0.2.1'].query({
-        query: `update players set one = ${one+1} where tag = ${attacks[attacks.length-1].attackerTag};`,
-        charset: `UTF8MB4`
+      else if (attacks[i].stars === '1'){
+        await lib.mysql.db['@0.2.1'].query({
+          query: `update players set one = ${one+1} where tag = ${attacks[i].attackerTag};`,
+          charset: `UTF8MB4`
 });
     }
-    else if (attacks[attacks.length-1].stars === '0'){
-      await lib.mysql.db['@0.2.1'].query({
-        query: `update players set zero = ${zero+1} where tag = ${attacks[attacks.length-1].attackerTag};`,
-        charset: `UTF8MB4`
+      else if (attacks[i].stars === '0'){
+        await lib.mysql.db['@0.2.1'].query({
+          query: `update players set zero = ${zero+1} where tag = ${attacks[i].attackerTag};`,
+          charset: `UTF8MB4`
 });
+    }
     }
     return lib.discord.channels['@0.3.2'].messages.create({
       channel_id: `860512303233236995`,
