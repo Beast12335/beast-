@@ -59,13 +59,14 @@ beast.events.setWarEvent({
 });
 beast.on('stateChange',async(oldWar, newWar) => {
   console.log(oldWar.state, newWar.state);
-  if (newWar.state === 'PREPARATION') {
+  if (newWar.state === 'preparation') {
     await lib.discord.channels['@0.3.2'].messages.create({
       channel_id: `860512303233236995`,
       content: `Beast `
   }); }
-  else if(newWar.state === 'ENDED') {
-    var attacks = await beast.getWar(oldWar.clan.tag)
+  else if(newWar.state === 'warEnded') {
+    var clan = await beast.getWar(oldWar.clan.tag)
+    var attacks = await clan.clan.attacks
     for (let i=0;i<attacks.length;i++) {
       if (attacks[i].stars === '3'){
         await lib.mysql.db['@0.2.1'].query({
