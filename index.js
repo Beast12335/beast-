@@ -59,7 +59,7 @@ beast.events.setWarEvent({
 });
 beast.on('stateChange',async(oldWar, newWar) => {
   console.log(oldWar.state, newWar.state);
-  if (newWar.state === 'preparation') {
+  if (newWar.state === 'inWar') {
     await lib.discord.channels['@0.3.2'].messages.create({
       channel_id: `860512303233236995`,
       content: `Beast `
