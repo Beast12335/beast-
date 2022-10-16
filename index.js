@@ -21,7 +21,7 @@ client.on('messageCreate', (message) => {
   }
 })
 const {Client:ClashClient} = require('clashofclans.js');
-const beast = new ClashClient() 
+const beast = new ClashClient(cache:true) 
 beast.events.addPlayers(['#PV0G8V8V8']);
 beast.events.setPlayerEvent({
     name: 'playerChange',
