@@ -21,7 +21,7 @@ client.on('messageCreate', (message) => {
   }
 })
 const {Client:ClashClient} = require('clashofclans.js');
-const beast = new ClashClient(cache:true) 
+const beast = new ClashClient() 
 beast.events.addPlayers(['#PV0G8V8V8']);
 beast.events.setPlayerEvent({
     name: 'playerChange',
@@ -100,7 +100,7 @@ beast.on('stateChange',async(oldWar, newWar) => {
 }
 });
 (async function () {
-	await beast.login({email:process.env.mail,password:process.env.pass})
+	await beast.login({email:process.env.mail,password:process.env.pass,cache:true})
     await beast.events.init();
 })();
 client.login(mySecret)
