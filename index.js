@@ -36,7 +36,23 @@ return lib.discord.channels['@0.3.2'].messages.create({
   content: `<@849123406477656086>`
 })
 });
-beast.events.addWars(['#29QLY92Y2']);
+let clans = [];
+async function () {
+  client.on('messageCreate', async(message) => {
+    if (message.channelId == '1028321836666200185') {
+      console.log(message)
+      var clan = await beast.getClan(message.content)
+      // var attacks = await clan.clan.attacks			
+      clans.push('message.content');
+      for (let i=0;i<clan.members.length;i++) {
+        let b = await lib.mysql.db['@0.2.1'].query({
+          query: `insert into players values('${clan.members[i].name}','${clan.members[i].tag}','0','0','0','0','0','0');`, 
+          charset: `UTF8MB4`});
+          }
+          }
+      });
+})();
+beast.events.addWars(clans);
 beast.events.setWarEvent({
   name: 'stateChange',
   filter: (oldWar, newWar) => {
@@ -51,7 +67,7 @@ beast.on('stateChange',async(oldWar, newWar) => {
       content: `Beast `
   }); }
   else if(newWar.state === 'warEnded') {
-    var clan = await beast.getWar(oldWar.clan.tag)
+    var clan = await beast.getClanWar(oldWar.clan.tag)
     var attacks = await clan.clan.attacks
     for (let i=0;i<attacks.length;i++) {
       if (attacks[i].stars === '3'){
