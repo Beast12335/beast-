@@ -51,7 +51,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
           }
       });
 })();
-async function myTimer() {
+(async function myTimer() {
   const date = new Date();
   console.log ('hemlo')
   let a = await lib.mysql.db['@0.2.1'].query({
@@ -101,8 +101,9 @@ async function myTimer() {
          content: `<@849123406477656086>`
 });
 }}};
-}
-myInterval = setInterval(myTimer,600000) 
+      setTimeout(myTimer,600000) 
+})();
+//myInterval = setInterval(myTimer,600000) 
 (async function () {
   await beast.login({email:process.env.mail,password:process.env.pass,cache:true})
     await beast.events.init();
