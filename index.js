@@ -44,6 +44,7 @@ let clans = [];
       var clan = await beast.getClan(message.content)
       // var attacks = await clan.clan.attacks			
       clans.push('message.content');
+      console.log(clans)
       for (let i=0;i<clan.members.length;i++) {
         let b = await lib.mysql.db['@0.2.1'].query({
           query: `insert into players values('${clan.members[i].name}','${clan.members[i].tag}','0','0','0','0','0','0');`, 
@@ -52,7 +53,7 @@ let clans = [];
           }
       });
 })();
-beast.events.addWars(clans);
+beast.events.addWars([clans,'#8J8QJ2LV']);
 beast.events.setWarEvent({
   name: 'stateChange',
   filter: (oldWar, newWar) => {
