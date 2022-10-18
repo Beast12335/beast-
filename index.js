@@ -53,7 +53,7 @@ let clans = [];
           }
       });
 })();
-beast.events.addWars([clans,'#8J8QJ2LV']);
+beast.events.addWars(clans);
 beast.events.setWarEvent({
   name: 'stateChange',
   filter: (oldWar, newWar) => {
