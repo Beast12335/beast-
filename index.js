@@ -43,7 +43,7 @@ let clans = [];
       console.log(message)
       var clan = await beast.getClan(message.content)
       // var attacks = await clan.clan.attacks			
-      clans.push('message.content');
+      clans.push(message.content);
       console.log(clans)
       for (let i=0;i<clan.members.length;i++) {
         let b = await lib.mysql.db['@0.2.1'].query({
