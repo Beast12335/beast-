@@ -36,15 +36,13 @@ return lib.discord.channels['@0.3.2'].messages.create({
   content: `<@849123406477656086>`
 })
 });
-let clans = [];
 (async function () {
   client.on('messageCreate', async(message) => {
     if (message.channelId == '1028321836666200185') {
       console.log(message)
       var clan = await beast.getClan(message.content)
       // var attacks = await clan.clan.attacks			
-      clans.push(message.content);
-      console.log(clans)
+      
       for (let i=0;i<clan.members.length;i++) {
         let b = await lib.mysql.db['@0.2.1'].query({
           query: `insert into players values('${clan.members[i].name}','${clan.members[i].tag}','0','0','0','0','0','0');`, 
@@ -53,57 +51,60 @@ let clans = [];
           }
       });
 })();
-beast.events.addWars(clans);
-beast.events.setWarEvent({
-  name: 'stateChange',
-  filter: (oldWar, newWar) => {
-    return oldWar.state !== newWar.state; 
-    }
-});
-beast.on('stateChange',async(oldWar, newWar) => {
-  console.log(oldWar.state, newWar.state);
-  if (newWar.state === 'inWar') {
-    await lib.discord.channels['@0.3.2'].messages.create({
-      channel_id: `860512303233236995`,
-      content: `Beast `
-  }); }
-  else if(newWar.state === 'warEnded') {
-    var clan = await beast.getClanWar(oldWar.clan.tag)
-    var attacks = await clan.clan.attacks
-    for (let i=0;i<attacks.length;i++) {
-      if (attacks[i].stars === '3'){
+async function myTimer() {
+  const date = new Date();
+  console.log ('hemlo')
+  let a = await lib.mysql.db['@0.2.1'].query({
+    query: `select * from master;`,
+    charset: `UTF8MB4`
+  });
+  for (let i =0;i<a.result.length;i++) {
+    var state = await beast.getClanWar(a.result[i].clan)
+    if (state.state === a.result[i].state) {
+      return }
+    else {
+      if (state.state === 'warEnded') {
         await lib.mysql.db['@0.2.1'].query({
-          query: `update players set triple = ${triple+1} where tag = ${attacks[i].attackerTag};`,
+          query: `update master set state = 'warEnded' where clan = ${a.result[i].clan};`,
           charset: `UTF8MB4`
+        });
+        var clan = await beast.getClanWar(a.result[i].tag) 
+        var attacks = await clan.clan.attacks
+        for (let j=0;j<attacks.length;j++) {
+          if (attacks[j].stars === '3'){
+            await lib.mysql.db['@0.2.1'].query({
+              query: `update players set triple = ${triple+1} where tag = ${attacks[j].attackerTag};`,
+              charset: `UTF8MB4`
 });
 }
-      else if (attacks[i].stars === '2'){
-        await lib.mysql.db['@0.2.1'].query({
-          query: `update players set two = ${two+1} where tag = ${attacks[i].attackerTag};`,
-          charset: `UTF8MB4`
+          else if (attacks[j].stars === '2'){
+            await lib.mysql.db['@0.2.1'].query({
+              query: `update players set two = ${two+1} where tag = ${attacks[j].attackerTag};`,
+              charset: `UTF8MB4`
 });
   }
-      else if (attacks[i].stars === '1'){
-        await lib.mysql.db['@0.2.1'].query({
-          query: `update players set one = ${one+1} where tag = ${attacks[i].attackerTag};`,
-          charset: `UTF8MB4`
+          else if (attacks[j].stars === '1'){
+            await lib.mysql.db['@0.2.1'].query({
+              query: `update players set one = ${one+1} where tag = ${attacks[j].attackerTag};`,
+              charset: `UTF8MB4`
 });
     }
-      else if (attacks[i].stars === '0'){
-        await lib.mysql.db['@0.2.1'].query({
-          query: `update players set zero = ${zero+1} where tag = ${attacks[i].attackerTag};`,
-          charset: `UTF8MB4`
+          else if (attacks[j].stars === '0'){
+            await lib.mysql.db['@0.2.1'].query({
+              query: `update players set zero = ${zero+1} where tag = ${attacks[j].attackerTag};`,
+              charset: `UTF8MB4`
 });
     }
     }
-    return lib.discord.channels['@0.3.2'].messages.create({
-      channel_id: `860512303233236995`,
-      content: `<@849123406477656086>`
-})
+      return lib.discord.channels['@0.3.2'].messages.create({
+         channel_id: `860512303233236995`,
+         content: `<@849123406477656086>`
+});
+}}};
 }
-});
+myInterval = setInterval(myTimer,600000) 
 (async function () {
-	await beast.login({email:process.env.mail,password:process.env.pass,cache:true})
+  await beast.login({email:process.env.mail,password:process.env.pass,cache:true})
     await beast.events.init();
 })();
 client.login(mySecret)
