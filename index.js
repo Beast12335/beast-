@@ -83,25 +83,25 @@ return lib.discord.channels['@0.3.2'].messages.create({
         for (let j=0;j<attacks.length;j++) {
           if (attacks[j].stars === '3'){
             await lib.mysql.db['@0.2.1'].query({
-              query: `update players set triple = ${triple+1} where tag = ${attacks[j].attackerTag};`,
+              query: `update players set triple = '${triple+1}' where tag = '${attacks[j].attackerTag}';`,
               charset: `UTF8MB4`
 });
 }
           else if (attacks[j].stars === '2'){
             await lib.mysql.db['@0.2.1'].query({
-              query: `update players set two = ${two+1} where tag = ${attacks[j].attackerTag};`,
+              query: `update players set two = '${two+1}' where tag = '${attacks[j].attackerTag}';`,
               charset: `UTF8MB4`
 });
   }
           else if (attacks[j].stars === '1'){
             await lib.mysql.db['@0.2.1'].query({
-              query: `update players set one = ${one+1} where tag = ${attacks[j].attackerTag};`,
+              query: `update players set one = '${one+1}' where tag = '${attacks[j].attackerTag}';`,
               charset: `UTF8MB4`
 });
     }
           else if (attacks[j].stars === '0'){
             await lib.mysql.db['@0.2.1'].query({
-              query: `update players set zero = ${zero+1} where tag = ${attacks[j].attackerTag};`,
+              query: `update players set zero = '${zero+1}' where tag = '${attacks[j].attackerTag}';`,
               charset: `UTF8MB4`
 });
     }
