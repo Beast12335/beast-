@@ -63,16 +63,16 @@ return lib.discord.channels['@0.3.2'].messages.create({
     if (state.state === a.result[i].state) {
       return }
     else {
-     // if (state.state = 'preparation') {
-      //  await lib.mysql.db['@0.2.1'].query({
-        //  query: `update master set state = 'inWar' where clan = ${a.result[i].clan};`,
-         // charset: `UTF8MB4`
-     //   });   }
-     if (state.state === 'inWar') {
+      if (state.state = 'preparation') {
         await lib.mysql.db['@0.2.1'].query({
-          query: `update master set state = 'warEnded' where clan = ${a.result[i].clan};`,
+          query: `update master set state = 'inWar' where clan = ${a.result[i].clan};`,
           charset: `UTF8MB4`
-        });  }
+        });   }
+     //if (state.state === 'inWar') {
+      //  await lib.mysql.db['@0.2.1'].query({
+       //   query: `update master set state = 'warEnded' where clan = ${a.result[i].clan};`,
+       //   charset: `UTF8MB4`
+       // });  }
       else if (state.state === 'warEnded') {
         await lib.mysql.db['@0.2.1'].query({
           query: `update master set state = 'notInWar' where clan = ${a.result[i].clan};`,
