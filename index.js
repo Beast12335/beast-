@@ -59,11 +59,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
     charset: `UTF8MB4`
   });
   for (let i =0;i<a.result.length;i++) {
-    try {
-      var state = await beast.getClanWar(a.result[i].clan)
-      } catch(e) {
-        return 
-        }
+    var state = await beast.getClanWar(a.result[i].clan)
     if (state.state === a.result[i].state) {
       return }
     else {
