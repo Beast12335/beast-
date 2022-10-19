@@ -53,19 +53,33 @@ return lib.discord.channels['@0.3.2'].messages.create({
 })();
 (async function myTimer() {
   const date = new Date();
-  console.log ('hemlo')
+  console.log ('hemlo  '+ new Date()) 
   let a = await lib.mysql.db['@0.2.1'].query({
     query: `select * from master;`,
     charset: `UTF8MB4`
   });
   for (let i =0;i<a.result.length;i++) {
-    var state = await beast.getClanWar(a.result[i].clan)
+    try {
+      var state = await beast.getClanWar(a.result[i].clan)
+      } catch(e) {
+        return 
+        }
     if (state.state === a.result[i].state) {
       return }
     else {
-      if (state.state === 'warEnded') {
+      if (state.state = 'preparation') {
         await lib.mysql.db['@0.2.1'].query({
-          query: `update master set state = 'warEnded' where clan = ${a.result[i].clan};`,
+          query: `update master set state = 'inWar' where clan = ${a.result[i].clan};`,
+          charset: `UTF8MB4`
+        });   }
+      else if (state.state === 'inWar') {
+        await lib.mysql.db['@0.2.1'].query({
+          query: `update master set  state = 'warEnded' where clan = ${a.result[i].clan};`,
+          charset: `UTF8MB4`
+        });  }
+      else if (state.state === 'warEnded') {
+        await lib.mysql.db['@0.2.1'].query({
+          query: `update master set state = 'notInWar' where clan = ${a.result[i].clan};`,
           charset: `UTF8MB4`
         });
         var clan = await beast.getClanWar(a.result[i].tag) 
@@ -101,9 +115,8 @@ return lib.discord.channels['@0.3.2'].messages.create({
          content: `<@849123406477656086>`
 });
 }}};
-      setTimeout(myTimer,600000) 
+      setTimeout(myTimer,600000)
 })();
-//myInterval = setInterval(myTimer,600000) 
 (async function () {
   await beast.login({email:process.env.mail,password:process.env.pass,cache:true})
     await beast.events.init();
