@@ -61,7 +61,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
   for (let i =0;i<a.result.length;i++) {
     var state = await beast.getClanWar(a.result[i].clan)
     if (state.state === a.result[i].state) {
-      return }
+      continue }
     else {
       if (state.state = 'preparation') {
         await lib.mysql.db['@0.2.1'].query({
