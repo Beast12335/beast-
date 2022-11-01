@@ -69,11 +69,11 @@ return lib.discord.channels['@0.3.2'].messages.create({
       continue }
     else {
       await lib.mysql.db['@0.2.1'].query({
-        query: `update master set state = ${a.result[i].new} where clan = ${a.result[i].clan};`,
+        query: `update master set state = '${a.result[i].new}' where clan = '${a.result[i].clan}';`,
         charset: `UTF8MB4`
       });
       await lib.mysql.db['@0.2.1'].query({
-        query: `update master set state = ${state.state} where clan = ${a.result[i].clan};`,
+        query: `update master set new = '${state.state}' where clan = '${a.result[i].clan}';`,
         charset: `UTF8MB4`
       });
       if (a[i].result.new === 'warEnded') {
