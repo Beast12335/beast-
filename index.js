@@ -53,7 +53,8 @@ return lib.discord.channels['@0.3.2'].messages.create({
 })();
 (async function myTimer() {
   const date = new Date();
-  console.log ('hemlo  '+ new Date()) 
+  console.log ('hemlo  ')
+  console.log (new Date().toLocaleString('en-US',{timeZone:'Asia/Kolkata'}))
   let a = await lib.mysql.db['@0.2.1'].query({
     query: `select * from master;`,
     charset: `UTF8MB4`
