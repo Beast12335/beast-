@@ -85,8 +85,9 @@ return lib.discord.channels['@0.3.2'].messages.create({
   });
       if (b.result[i].new === 'warEnded') {
         console.log ('war over')
-        var clan = await beast.getClanWar(a.result[i].clan) 
+        var clan = await beast.getClanWar(b.result[i].clan) 
         var attacks = await clan.clan.attacks
+        console.log(attacks) 
         for (let j=0;j<attacks.length;j++) {
           if (attacks[j].stars === '3'){
             await lib.mysql.db['@0.2.1'].query({
