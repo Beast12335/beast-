@@ -78,7 +78,8 @@ return lib.discord.channels['@0.3.2'].messages.create({
         query: `update master set new = '${state.state}' where clan = '${a.result[i].clan}';`,
         charset: `UTF8MB4`
       });
-      if (a.result[i].new === 'warEnded') {
+      console.log('hi')
+      if (a.result[i].new == 'warEnded') {
         console.log ('beast')
         var clan = await beast.getClanWar(a.result[i].tag) 
         var attacks = await clan.clan.attacks
