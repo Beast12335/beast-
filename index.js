@@ -78,14 +78,14 @@ return lib.discord.channels['@0.3.2'].messages.create({
         query: `update master set new = '${state.state}' where clan = '${a.result[i].clan}';`,
         charset: `UTF8MB4`
       });
-      console.log('hi')
+      console.log('values changed ')
       let b = await lib.mysql.db['@0.2.1'].query({
         query: `select * from master;`,
         charset: `UTF8MB4`
   });
       if (b.result[i].new === 'warEnded') {
-        console.log ('beast')
-        var clan = await beast.getClanWar(a.result[i].tag) 
+        console.log ('war over')
+        var clan = await beast.getClanWar(a.result[i].clan) 
         var attacks = await clan.clan.attacks
         for (let j=0;j<attacks.length;j++) {
           if (attacks[j].stars === '3'){
