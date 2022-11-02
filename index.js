@@ -87,27 +87,28 @@ return lib.discord.channels['@0.3.2'].messages.create({
         console.log ('war over')
         var clan = await beast.getClanWar(b.result[i].clan) 
         var attacks = await clan.clan.attacks
-        console.log(attacks) 
+        //console.log(attacks) 
         for (let j=0;j<attacks.length;j++) {
-          if (attacks[j].stars === '3'){
+          console.log('adding stats')
+          if (attacks[j].stars === 3){
             await lib.mysql.db['@0.2.1'].query({
               query: `update players set triple = '${triple+1}' where tag = '${attacks[j].attackerTag}';`,
               charset: `UTF8MB4`
 });
 }
-          else if (attacks[j].stars === '2'){
+          else if (attacks[j].stars === 2){
             await lib.mysql.db['@0.2.1'].query({
               query: `update players set two = '${two+1}' where tag = '${attacks[j].attackerTag}';`,
               charset: `UTF8MB4`
 });
   }
-          else if (attacks[j].stars === '1'){
+          else if (attacks[j].stars === 1){
             await lib.mysql.db['@0.2.1'].query({
               query: `update players set one = '${one+1}' where tag = '${attacks[j].attackerTag}';`,
               charset: `UTF8MB4`
 });
     }
-          else if (attacks[j].stars === '0'){
+          else if (attacks[j].stars === 0){
             await lib.mysql.db['@0.2.1'].query({
               query: `update players set zero = '${zero+1}' where tag = '${attacks[j].attackerTag}';`,
               charset: `UTF8MB4`
