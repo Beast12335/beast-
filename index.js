@@ -79,7 +79,11 @@ return lib.discord.channels['@0.3.2'].messages.create({
         charset: `UTF8MB4`
       });
       console.log('hi')
-      if (a.result[i].new == 'warEnded') {
+      let b = await lib.mysql.db['@0.2.1'].query({
+        query: `select * from master;`,
+        charset: `UTF8MB4`
+  });
+      if (b.result[i].new === 'warEnded') {
         console.log ('beast')
         var clan = await beast.getClanWar(a.result[i].tag) 
         var attacks = await clan.clan.attacks
