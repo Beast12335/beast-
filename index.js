@@ -67,6 +67,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
          continue }
       console.log (e) }
     if (a.result[i].new === state.state) {
+      console.log(a.result[i].new === state.state)
       continue }
     else {
       await lib.mysql.db['@0.2.1'].query({
@@ -78,6 +79,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
         charset: `UTF8MB4`
       });
       if (a.result[i].new === 'warEnded') {
+        console.log ('beast')
         var clan = await beast.getClanWar(a.result[i].tag) 
         var attacks = await clan.clan.attacks
         for (let j=0;j<attacks.length;j++) {
