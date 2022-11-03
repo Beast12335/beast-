@@ -123,6 +123,7 @@ const job = schedule.scheduleJob('0 17 ? * 0,4-6', function(){
 });
 }}};
 })();
+});
 (async function () {
   await beast.login({email:process.env.mail,password:process.env.pass,cache:true})
     await beast.events.init();
