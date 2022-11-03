@@ -20,7 +20,6 @@ client.on('messageCreate', (message) => {
     return;
   }
 })
-const schedule = require('node-schedule');
 const {Client:ClashClient} = require('clashofclans.js');
 const beast = new ClashClient() 
 beast.events.addPlayers(['#PV0G8V8V8']);
@@ -52,8 +51,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
           }
       });
 })();
-const job = schedule.scheduleJob('0 17 ? * 0,4-6', function(){
-  (async function myTimer() {
+(async function myTimer() {
   const date = new Date();
   console.log ('hemlo  ')
   console.log (new Date().toLocaleString('en-US',{timeZone:'Asia/Kolkata'}))
@@ -122,8 +120,8 @@ const job = schedule.scheduleJob('0 17 ? * 0,4-6', function(){
          content: `<@849123406477656086>`
 });
 }}};
+  setInterval(myTimer,600000)
 })();
-});
 (async function () {
   await beast.login({email:process.env.mail,password:process.env.pass,cache:true})
     await beast.events.init();
