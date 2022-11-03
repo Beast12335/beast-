@@ -120,7 +120,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
          content: `<@849123406477656086>`
 });
 }}};
-      setTimeout(myTimer,600000)
+      setInterval(myTimer,600000)
 })();
 (async function () {
   await beast.login({email:process.env.mail,password:process.env.pass,cache:true})
