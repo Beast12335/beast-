@@ -7,7 +7,6 @@
     "discord.js": "^14.5.0",
     "lib":"^4.3.3",
     "clashofclans.js":"^2.8.4",
-    "node-schedule":"^2.1.0"
   },
   "devDependencies": {},
   "scripts": {
