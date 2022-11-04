@@ -36,92 +36,21 @@ return lib.discord.channels['@0.3.2'].messages.create({
   content: `<@849123406477656086>`
 })
 });
-(async function () {
-  client.on('messageCreate', async(message) => {
-    if (message.channelId == '1028321836666200185') {
-      console.log(message)
-      var clan = await beast.getClan(message.content)
-      // var attacks = await clan.clan.attacks			
-      
-      for (let i=0;i<clan.members.length;i++) {
-        let b = await lib.mysql.db['@0.2.1'].query({
-          query: `insert into players values('${clan.members[i].name}','${clan.members[i].tag}','0','0','0','0','0','0');`, 
-          charset: `UTF8MB4`});
-          }
-          }
-      });
-})();
-(async function myTimer() {
-  const date = new Date();
-  console.log ('hemlo  ')
-  console.log (new Date().toLocaleString('en-US',{timeZone:'Asia/Kolkata'}))
-  let a = await lib.mysql.db['@0.2.1'].query({
-    query: `select * from master;`,
-    charset: `UTF8MB4`
+let a = []
+client.on('messageCreate',(message) =>{
+  if(message.channelId === '1028321836666200185') {
+    a.push(message.content) }
   });
-  for (let i =0;i<a.result.length;i++) {
-    try{
-      var state = await beast.getClanWar(a.result[i].clan) 
-     } catch(e) {
-      if(e.reason === 'notInWar') {
-         continue }
-      console.log (e) }
-    if (a.result[i].new === state.state) {
-      console.log(a.result[i].new === state.state)
-      continue }
-    else {
-      await lib.mysql.db['@0.2.1'].query({
-        query: `update master set state = '${a.result[i].new}' where clan = '${a.result[i].clan}';`,
-        charset: `UTF8MB4`
-      });
-      await lib.mysql.db['@0.2.1'].query({
-        query: `update master set new = '${state.state}' where clan = '${a.result[i].clan}';`,
-        charset: `UTF8MB4`
-      });
-      console.log('values changed ')
-      let b = await lib.mysql.db['@0.2.1'].query({
-        query: `select * from master;`,
-        charset: `UTF8MB4`
-  });
-      if (b.result[i].new === 'warEnded') {
-        console.log ('war over')
-        var clan = await beast.getClanWar(b.result[i].clan) 
-        var attacks = await clan.clan.attacks
-        //console.log(attacks) 
-        for (let j=0;j<attacks.length;j++) {
-          console.log('adding stats')
-          if (attacks[j].stars === 3){
-            await lib.mysql.db['@0.2.1'].query({
-              query: `update players set triple = triple+1 where tag = '${attacks[j].attackerTag}';`,
-              charset: `UTF8MB4`
-});
-}
-          else if (attacks[j].stars === 2){
-            await lib.mysql.db['@0.2.1'].query({
-              query: `update players set two = two+1 where tag = '${attacks[j].attackerTag}';`,
-              charset: `UTF8MB4`
-});
-  }
-          else if (attacks[j].stars === 1){
-            await lib.mysql.db['@0.2.1'].query({
-              query: `update players set one = one+1 where tag = '${attacks[j].attackerTag}';`,
-              charset: `UTF8MB4`
-});
+beast.events.addWars(a);
+beast.events.setWarEvent({
+  name:'stateChange', 
+  filter:(oldWar,newWar) =>{
+    return oldWar.state  !== newWar.state
     }
-          else if (attacks[j].stars === 0){
-            await lib.mysql.db['@0.2.1'].query({
-              query: `update players set zero = zero+1 where tag = '${attacks[j].attackerTag}';`,
-              charset: `UTF8MB4`
 });
-    }
-    }
-    return lib.discord.channels['@0.3.2'].messages.create({
-         channel_id: `860512303233236995`,
-         content: `<@849123406477656086>`
+beast.on('stateChange',(oldWar,newWar) =>{
+  console.log(oldWar.state,newWar.state)
 });
-}}};
-  setInterval(myTimer,600000)
-})();
 (async function () {
   await beast.login({email:process.env.mail,password:process.env.pass,cache:true})
     await beast.events.init();
