@@ -39,7 +39,9 @@ return lib.discord.channels['@0.3.2'].messages.create({
 let a = []
 client.on('messageCreate',(message) =>{
   if(message.channelId === '1028321836666200185') {
-    a.push(message.content) }
+    a.push(message.content)
+    console.log(a)
+}
   });
 beast.events.addWars(a);
 beast.events.setWarEvent({
@@ -51,7 +53,6 @@ beast.events.setWarEvent({
 beast.on('stateChange',(oldWar,newWar) =>{
   console.log(oldWar.state,newWar.state)
 });
-console.log(a) 
 (async function () {
   await beast.login({email:process.env.mail,password:process.env.pass,cache:true})
     await beast.events.init();
