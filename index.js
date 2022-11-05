@@ -44,6 +44,8 @@ client.on('messageCreate',(message) =>{
 }
   });
 beast.events.addWars(a);
+beast.events.addWars(['#88UUCRR9']);
+console.log(a) 
 beast.events.setWarEvent({
   name:'stateChange', 
   filter:(oldWar,newWar) =>{
