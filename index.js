@@ -44,7 +44,7 @@ client.on('messageCreate',(message) =>{
 }
   });
 beast.events.addPlayers(a)
-beast.events.on('playerChange',(oldPlayer,newPlayer) =>{
+beast.on('playerChange',(oldPlayer,newPlayer) =>{
     console.log(newPlayer.tag) 
     console.log(oldPlayer.trophies,newPlayer.trophies) 
 });
