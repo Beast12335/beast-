@@ -22,15 +22,15 @@ client.on('messageCreate', (message) => {
 })
 const {Client:ClashClient} = require('clashofclans.js');
 const beast = new ClashClient() 
-beast.events.addPlayers(['#PV0G8V8V8']);
+beast.events.addPlayers(['#PV0G8V8V8','#LCRRVL2R']);
 beast.events.setPlayerEvent({
     name: 'playerChange',
     filter: (oldPlayer, newPlayer) => {
-        return oldPlayer.warOptedIn !== newPlayer.warOptedIn;
+        return oldPlayer.trophies !== newPlayer.trophies;
     }
 });
 beast.on('playerChange', (oldPlayer, newPlayer) => {
-    console.log(oldPlayer.warOptedIn, newPlayer.warOptedIn);
+    console.log(oldPlayer.trophies, newPlayer.trophies);
 return lib.discord.channels['@0.3.2'].messages.create({
   channel_id: `860512303233236995`,
   content: `<@849123406477656086>`
@@ -43,19 +43,12 @@ client.on('messageCreate',(message) =>{
     console.log(a)
 }
   });
-beast.events.addWars(a);
-beast.events.addWars(['#88UUCRR9']);
-console.log(a) 
-beast.events.setWarEvent({
-  name:'stateChange', 
-  filter:(oldWar,newWar) =>{
-    return oldWar.state  !== newWar.state
-    }
+beast.events.addPlayers(a)
+beast.events.on('playerChange',(oldPlayer,newPlayer) =>{
+    console.log(newPlayer.tag) 
+    console.log(oldPlayer.trophies,newPlayer.trophies) 
 });
-beast.on('stateChange',(oldWar,newWar) =>{
-  console.log(oldWar.state,newWar.state)
-});
-(async function () {
+async function () {
   await beast.login({email:process.env.mail,password:process.env.pass,cache:true})
     await beast.events.init();
 })();
