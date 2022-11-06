@@ -48,7 +48,7 @@ beast.events.on('playerChange',(oldPlayer,newPlayer) =>{
     console.log(newPlayer.tag) 
     console.log(oldPlayer.trophies,newPlayer.trophies) 
 });
-async function () {
+(async function () {
   await beast.login({email:process.env.mail,password:process.env.pass,cache:true})
     await beast.events.init();
 })();
