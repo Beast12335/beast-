@@ -22,7 +22,16 @@ client.on('messageCreate', (message) => {
 })
 const {Client:ClashClient} = require('clashofclans.js');
 const beast = new ClashClient() 
-beast.events.addPlayers(['#PV0G8V8V8','#LCRRVL2R']);
+//east.events.addPlayers(['#PV0G8V8V8','#LCRRVL2R']);
+
+let a = []
+client.on('messageCreate',(message) =>{
+  if(message.channelId === '1028321836666200185') {
+    a.push(message.content)
+    console.log(a)
+}
+  });
+beast.events.addPlayers(a)
 beast.events.setPlayerEvent({
     name: 'playerChange',
     filter: (oldPlayer, newPlayer) => {
@@ -35,18 +44,6 @@ return lib.discord.channels['@0.3.2'].messages.create({
   channel_id: `860512303233236995`,
   content: `<@849123406477656086>`
 })
-});
-let a = []
-client.on('messageCreate',(message) =>{
-  if(message.channelId === '1028321836666200185') {
-    a.push(message.content)
-    console.log(a)
-}
-  });
-beast.events.addPlayers(a)
-beast.on('playerChange',(oldPlayer,newPlayer) =>{
-    console.log(newPlayer.tag) 
-    console.log(oldPlayer.trophies,newPlayer.trophies) 
 });
 (async function () {
   await beast.login({email:process.env.mail,password:process.env.pass,cache:true})
