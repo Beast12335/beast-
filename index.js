@@ -64,7 +64,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
       var player = await beast.getPlayer(a.result[i].tag)
       if (!(player.trophies == a.result[i].triple)){
         await lib.mysql.db['@0.2.1'].query({
-          query: `update players set triple = `${player.trophies}` where tag = `${player.tag}`;`,
+          query: `update players set triple = '${player.trophies}' where tag = `${player.tag}`;`,
           charset: `UTF8MB4`
         });
         console.log('values changee') 
