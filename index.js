@@ -45,8 +45,9 @@ return lib.discord.channels['@0.3.2'].messages.create({
       // var attacks = await clan.clan.attacks			
       
       for (let i=0;i<clan.members.length;i++) {
+        let c = await beast.getPlayer(clan.members[i].tag)
         let b = await lib.mysql.db['@0.2.1'].query({
-          query: `insert into players values('${clan.members[i].name}','${clan.members[i].tag}','${clan.tag}','0','0','0','0','0','0','0','0','0','0','0','0');`, 
+          query: `insert into players values('${clan.members[i].name}','${clan.members[i].tag}','${clan.tag}','${c.trophies}','${c.attackWins}','${warStars}','${c.donations}','${c.clanCapitalContributions}','${c.warOptedIn}','${versusTrophies}','${versusBattleWins}','${player.achievements[3].value}','${player.achievements[31].value}','${player.achievements[player.achievements.length-2].value}','0');`, 
           charset: `UTF8MB4`});
           }
           }
@@ -166,7 +167,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
         }); }
       else if (!(player.achievements[player.achievements.length-2].value == a.result[i].loot)) {
         await lib.mysql.db['@0.2.1'].query({
-          query: `update players set loot = '${player.achievements[achievements.length-2].value}' where tag = '${player.tag}';`,
+          query: `update players set loot = '${player.achievements[player.achievements.length-2].value}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         });
         console.log('values changed')
