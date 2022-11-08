@@ -47,7 +47,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
       for (let i=0;i<clan.members.length;i++) {
         let c = await beast.getPlayer(clan.members[i].tag)
         let b = await lib.mysql.db['@0.2.1'].query({
-          query: `insert into players values('${clan.members[i].name}','${clan.members[i].tag}','${clan.tag}','${c.trophies}','${c.attackWins}','${warStars}','${c.donations}','${c.clanCapitalContributions}','${c.warOptedIn}','${versusTrophies}','${versusBattleWins}','${player.achievements[3].value}','${player.achievements[31].value}','${player.achievements[player.achievements.length-2].value}','0');`, 
+          query: `insert into players values('${clan.members[i].name}','${clan.members[i].tag}','${clan.tag}','${c.trophies}','${c.attackWins}','${c.warStars}','${c.donations}','${c.clanCapitalContributions}','${c.warOptedIn}','${c.versusTrophies}','${c.versusBattleWins}','${c.achievements[3].value}','${c.achievements[31].value}','${c.achievements[c.achievements.length-2].value}','0');`, 
           charset: `UTF8MB4`});
           }
           }
