@@ -164,7 +164,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
           query: `update players set last = '${b}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         }); }
-      else if (!(player.achievements[achievements.length-2].value == a.result[i].loot)) {
+      else if (!(player.achievements[player.achievements.length-2].value == a.result[i].loot)) {
         await lib.mysql.db['@0.2.1'].query({
           query: `update players set loot = '${player.achievements[achievements.length-2].value}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
