@@ -45,7 +45,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
       
       for (let i=0;i<clan.members.length;i++) {
         let b = await lib.mysql.db['@0.2.1'].query({
-          query: `insert into players values('${clan.members[i].name}','${clan.members[i].tag}','0','0','0','0','0','0');`, 
+          query: `insert into players values('${clan.members[i].name}','${clan.members[i].tag}','${clan.tag}','0','0','0','0','0','0','0','0','0','0','0','0');`, 
           charset: `UTF8MB4`});
           }
           }
@@ -62,20 +62,124 @@ return lib.discord.channels['@0.3.2'].messages.create({
   for (let i =0;i<a.result.length;i++) {
     try{
       var player = await beast.getPlayer(a.result[i].tag)
-      if (!(player.trophies == a.result[i].triple)){
+      if (!(player.trophies == a.result[i].trophies)){
         await lib.mysql.db['@0.2.1'].query({
-          query: `update players set triple = '${player.trophies}' where tag = '${player.tag}';`,
+          query: `update players set trophies = '${player.trophies}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         });
-        console.log('values changee') 
+        console.log('values changed')
+        await lib.mysql.db['@0.2.1'].query({
+          query: `update players set last = '${new Date()}' where tag = '${player.tag}';`,
+          charset: `UTF8MB4`
+        });
         }
+      else if (!(player.attackWins == a.result[i].attacks)){
+        await lib.mysql.db['@0.2.1'].query({
+          query: `update players set attacks = '${player.attackWins}' where tag = '${player.tag}';`,
+          charset: `UTF8MB4`
+        });
+        console.log('values changed')
+        await lib.mysql.db['@0.2.1'].query({
+          query: `update players set last = '${new Date()}' where tag = '${player.tag}';`,
+          charset: `UTF8MB4`
+        }); }
+      else if (!(player.warStars == a.result[i].wars)) {
+        await lib.mysql.db['@0.2.1'].query({
+          query: `update players set wars = '${player.warStars}' where tag = '${player.tag}';`,
+          charset: `UTF8MB4`
+        });
+        console.log('values changed')
+        await lib.mysql.db['@0.2.1'].query({
+          query: `update players set last = '${new Date()}' where tag = '${player.tag}';`,
+          charset: `UTF8MB4`
+        }); }
+      else if (!(player.donations == a.result[i].donations)) {
+        await lib.mysql.db['@0.2.1'].query({
+          query: `update players set donations = '${player.donations}' where tag = '${player.tag}';`,
+          charset: `UTF8MB4`
+        });
+        console.log('values changed')
+        await lib.mysql.db['@0.2.1'].query({
+          query: `update players set last = '${new Date()}' where tag = '${player.tag}';`,
+          charset: `UTF8MB4`
+        }); }
+      else if (!(player.clanCapitalContributions == a.result[i].contributions)) {
+        await lib.mysql.db['@0.2.1'].query({
+          query: `update players set contributionss = '${player.clanCapitalContributions}' where tag = '${player.tag}';`,
+          charset: `UTF8MB4`
+        });
+        console.log('values changed')
+        await lib.mysql.db['@0.2.1'].query({
+          query: `update players set last = '${new Date()}' where tag = '${player.tag}';`,
+          charset: `UTF8MB4`
+        }); }
+      else if (!(player.warOptedIn == a.result[i].status)) {
+        await lib.mysql.db['@0.2.1'].query({
+          query: `update players set status = '${player.warOptedIn}' where tag = '${player.tag}';`,
+          charset: `UTF8MB4`
+        });
+        console.log('values changed')
+        await lib.mysql.db['@0.2.1'].query({
+          query: `update players set last = '${new Date()}' where tag = '${player.tag}';`,
+          charset: `UTF8MB4`
+        }); }
+      else if(!(player.versusTrophies == a.result[i].bb)) {
+        await lib.mysql.db['@0.2.1'].query({
+          query: `update players set bb = '${player.versusTrophies}' where tag = '${player.tag}';`,
+          charset: `UTF8MB4`
+        });
+        console.log('values changed')
+        await lib.mysql.db['@0.2.1'].query({
+          query: `update players set last = '${new Date()}' where tag = '${player.tag}';`,
+          charset: `UTF8MB4`
+        }); }
+      else if(!(player.versusBattleWins == a.result[i].bbwin)) {
+        await lib.mysql.db['@0.2.1'].query({
+          query: `update players set bbwin = '${player.versusBattleWins}' where tag = '${player.tag}';`,
+          charset: `UTF8MB4`
+        });
+        console.log('values changed')
+        await lib.mysql.db['@0.2.1'].query({
+          query: `update players set last = '${new Date()}' where tag = '${player.tag}';`,
+          charset: `UTF8MB4`
+        }); }
+      else if (!(player.achievements[3].value == a.result[i].obstacles)) {
+        await lib.mysql.db['@0.2.1'].query({
+          query: `update players set obstacles = '${player.achievements[3].value}' where tag = '${player.tag}';`,
+          charset: `UTF8MB4`
+        });
+        console.log('values changed')
+        await lib.mysql.db['@0.2.1'].query({
+          query: `update players set last = '${new Date()}' where tag = '${player.tag}';`,
+          charset: `UTF8MB4`
+        }); }
+      else if (!(player.achievements[31].value == a.result[i].games)) {
+        await lib.mysql.db['@0.2.1'].query({
+          query: `update players set games = '${player.player.achievements[31].value}' where tag = '${player.tag}';`,
+          charset: `UTF8MB4`
+        });
+        console.log('values changed')
+        await lib.mysql.db['@0.2.1'].query({
+          query: `update players set last = '${new Date()}' where tag = '${player.tag}';`,
+          charset: `UTF8MB4`
+        }); }
+      else if (!(player.achievements[achievements.length-2].value == a.result[i].loot)) {
+        await lib.mysql.db['@0.2.1'].query({
+          query: `update players set loot = '${player.achievements[achievements.length-2].value}' where tag = '${player.tag}';`,
+          charset: `UTF8MB4`
+        });
+        console.log('values changed')
+        await lib.mysql.db['@0.2.1'].query({
+          query: `update players set last = '${new Date()}' where tag = '${player.tag}';`,
+          charset: `UTF8MB4`
+        }); }
       }catch(e) {
         console.log(e) }
 }
   setTimeout(myTimer,180000)
 })();
 (async function () {
-  await beast.login({email:process.env.mail,password:process.env.pass,cache:true})
+  await beast.login({email:process.env.mail,password:process.env.pass,keyName:'test'})
     await beast.events.init();
 })();
 client.login(mySecret)
