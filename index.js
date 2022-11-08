@@ -105,7 +105,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
         }); }
       else if (!(player.clanCapitalContributions == a.result[i].contributions)) {
         await lib.mysql.db['@0.2.1'].query({
-          query: `update players set contributionss = '${player.clanCapitalContributions}' where tag = '${player.tag}';`,
+          query: `update players set contributions = '${player.clanCapitalContributions}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         });
         console.log('values changed')
