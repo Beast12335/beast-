@@ -20,8 +20,7 @@ client.on('messageCreate', (message) => {
     return;
   }
 })
-let b = JSON.stringify(new Date())
-let a = b.slice(1,b.length-6).replace('T',' ') 
+let a = new Date()
 const {Client:ClashClient} = require('clashofclans.js');
 const beast = new ClashClient() 
 beast.events.addPlayers(['#PV0G8V8V8']);
