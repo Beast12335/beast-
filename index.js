@@ -20,6 +20,8 @@ client.on('messageCreate', (message) => {
     return;
   }
 })
+let b = JSON.stringify(new Date())
+let a = b.slice(1,b.length-6).replace('T',' ') 
 const {Client:ClashClient} = require('clashofclans.js');
 const beast = new ClashClient() 
 beast.events.addPlayers(['#PV0G8V8V8']);
@@ -69,7 +71,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
         });
         console.log('values changed')
         await lib.mysql.db['@0.2.1'].query({
-          query: `update players set last = '${new Date()}' where tag = '${player.tag}';`,
+          query: `update players set last = '${a}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         });
         }
@@ -80,7 +82,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
         });
         console.log('values changed')
         await lib.mysql.db['@0.2.1'].query({
-          query: `update players set last = '${new Date()}' where tag = '${player.tag}';`,
+          query: `update players set last = '${a}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         }); }
       else if (!(player.warStars == a.result[i].wars)) {
@@ -90,7 +92,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
         });
         console.log('values changed')
         await lib.mysql.db['@0.2.1'].query({
-          query: `update players set last = '${new Date()}' where tag = '${player.tag}';`,
+          query: `update players set last = '${a}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         }); }
       else if (!(player.donations == a.result[i].donations)) {
@@ -100,7 +102,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
         });
         console.log('values changed')
         await lib.mysql.db['@0.2.1'].query({
-          query: `update players set last = '${new Date()}' where tag = '${player.tag}';`,
+          query: `update players set last = '${a}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         }); }
       else if (!(player.clanCapitalContributions == a.result[i].contributions)) {
@@ -110,7 +112,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
         });
         console.log('values changed')
         await lib.mysql.db['@0.2.1'].query({
-          query: `update players set last = '${new Date()}' where tag = '${player.tag}';`,
+          query: `update players set last = '${a}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         }); }
       else if (!(player.warOptedIn == a.result[i].status)) {
@@ -120,7 +122,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
         });
         console.log('values changed')
         await lib.mysql.db['@0.2.1'].query({
-          query: `update players set last = '${new Date()}' where tag = '${player.tag}';`,
+          query: `update players set last = '${a}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         }); }
       else if(!(player.versusTrophies == a.result[i].bb)) {
@@ -130,7 +132,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
         });
         console.log('values changed')
         await lib.mysql.db['@0.2.1'].query({
-          query: `update players set last = '${new Date()}' where tag = '${player.tag}';`,
+          query: `update players set last = '${a}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         }); }
       else if(!(player.versusBattleWins == a.result[i].bbwin)) {
@@ -140,7 +142,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
         });
         console.log('values changed')
         await lib.mysql.db['@0.2.1'].query({
-          query: `update players set last = '${new Date()}' where tag = '${player.tag}';`,
+          query: `update players set last = '${a}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         }); }
       else if (!(player.achievements[3].value == a.result[i].obstacles)) {
@@ -150,7 +152,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
         });
         console.log('values changed')
         await lib.mysql.db['@0.2.1'].query({
-          query: `update players set last = '${new Date()}' where tag = '${player.tag}';`,
+          query: `update players set last = '${a}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         }); }
       else if (!(player.achievements[31].value == a.result[i].games)) {
@@ -160,7 +162,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
         });
         console.log('values changed')
         await lib.mysql.db['@0.2.1'].query({
-          query: `update players set last = '${new Date()}' where tag = '${player.tag}';`,
+          query: `update players set last = '${a}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         }); }
       else if (!(player.achievements[achievements.length-2].value == a.result[i].loot)) {
@@ -170,7 +172,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
         });
         console.log('values changed')
         await lib.mysql.db['@0.2.1'].query({
-          query: `update players set last = '${new Date()}' where tag = '${player.tag}';`,
+          query: `update players set last = '${a}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         }); }
       }catch(e) {
