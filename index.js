@@ -115,16 +115,6 @@ return lib.discord.channels['@0.3.2'].messages.create({
           query: `update players set last = '${b}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         }); }
-      else if (!(player.warOptedIn == a.result[i].status)) {
-        await lib.mysql.db['@0.2.1'].query({
-          query: `update players set status = '${player.warOptedIn}' where tag = '${player.tag}';`,
-          charset: `UTF8MB4`
-        });
-        console.log('status changed for '+player.name)
-        await lib.mysql.db['@0.2.1'].query({
-          query: `update players set last = '${b}' where tag = '${player.tag}';`,
-          charset: `UTF8MB4`
-        }); }
       else if(!(player.versusTrophies == a.result[i].bb)) {
         await lib.mysql.db['@0.2.1'].query({
           query: `update players set bb = '${player.versusTrophies}' where tag = '${player.tag}';`,
