@@ -100,7 +100,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
           query: `update players set donations = '${player.donations}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         });
-        console.log('donations changed for ' player.name)
+        console.log('donations changed for '+player.name)
         await lib.mysql.db['@0.2.1'].query({
           query: `update players set last = '${b}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
