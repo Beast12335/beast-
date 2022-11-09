@@ -69,7 +69,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
           query: `update players set trophies = '${player.trophies}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         });
-        console.log('values changed')
+        console.log('trophies changes for '+player.name)
         await lib.mysql.db['@0.2.1'].query({
           query: `update players set last = '${b}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
@@ -80,7 +80,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
           query: `update players set attacks = '${player.attackWins}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         });
-        console.log('values changed')
+        console.log('attack changes for '+player.name)
         await lib.mysql.db['@0.2.1'].query({
           query: `update players set last = '${b}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
@@ -90,7 +90,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
           query: `update players set wars = '${player.warStars}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         });
-        console.log('values changed')
+        console.log('warStars changed for '+player.name) 
         await lib.mysql.db['@0.2.1'].query({
           query: `update players set last = '${b}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
@@ -100,7 +100,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
           query: `update players set donations = '${player.donations}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         });
-        console.log('values changed')
+        console.log('donations changed for ' player.name)
         await lib.mysql.db['@0.2.1'].query({
           query: `update players set last = '${b}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
@@ -110,7 +110,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
           query: `update players set contributions = '${player.clanCapitalContributions}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         });
-        console.log('values changed')
+        console.log('cc changed for '+player.name)
         await lib.mysql.db['@0.2.1'].query({
           query: `update players set last = '${b}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
@@ -120,7 +120,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
           query: `update players set status = '${player.warOptedIn}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         });
-        console.log('values changed')
+        console.log('status changed for '+player.name)
         await lib.mysql.db['@0.2.1'].query({
           query: `update players set last = '${b}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
@@ -130,7 +130,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
           query: `update players set bb = '${player.versusTrophies}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         });
-        console.log('values changed')
+        console.log('bb changed for '+player.name)
         await lib.mysql.db['@0.2.1'].query({
           query: `update players set last = '${b}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
@@ -140,7 +140,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
           query: `update players set bbwin = '${player.versusBattleWins}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         });
-        console.log('values changed')
+        console.log('bTeophies changed for '+player.name)
         await lib.mysql.db['@0.2.1'].query({
           query: `update players set last = '${b}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
@@ -150,7 +150,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
           query: `update players set obstacles = '${player.achievements[3].value}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         });
-        console.log('values changed')
+        console.log('obstacles changed for '+player.name)
         await lib.mysql.db['@0.2.1'].query({
           query: `update players set last = '${b}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
@@ -160,7 +160,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
           query: `update players set games = '${player.achievements[31].value}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         });
-        console.log('values changed')
+        console.log('games changed for '+player.name)
         await lib.mysql.db['@0.2.1'].query({
           query: `update players set last = '${b}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
@@ -170,7 +170,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
           query: `update players set loot = '${player.achievements[player.achievements.length-2].value}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         });
-        console.log('values changed')
+        console.log('loot changed for '+player.name)
         await lib.mysql.db['@0.2.1'].query({
           query: `update players set last = '${b}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
