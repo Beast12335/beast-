@@ -7,7 +7,6 @@ client.on('ready', () => {
   console.log(`logged in!`)
 })
 client.on('messageCreate', (message) => {
-  console.log (message)
   if (message.content == 'ping') {
     console.log(message)
     return lib.discord.channels['@0.3.2'].messages.create({
@@ -66,7 +65,7 @@ return lib.discord.channels['@0.3.2'].messages.create({
       var player = await beast.getPlayer(a.result[i].tag)
       if (!(player.clan.tag == a.result[i].clan)){
         await lib.mysql.db['@0.2.1'].query({
-          query: `update players set clan = '${player.clan.name}' where tag = '${player.tag}';`,
+          query: `update players set clan = '${player.clan.tag}' where tag = '${player.tag}';`,
           charset: `UTF8MB4`
         });
         console.log('clan changes for '+player.name)
