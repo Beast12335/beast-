@@ -29,6 +29,15 @@ beast.events.setPlayerEvent({
         return oldPlayer.warOptedIn !== newPlayer.warOptedIn;
     }
 });
+var cron = require('node-cron');
+console.log('hello')
+cron.schedule('5 * * * *', () => {
+  console.log('running every minute to 1 from 5');
+  return lib.discord.channels['@0.3.2'].messages.create({
+  channel_id: `860512303233236995`,
+  content: `<@849123406477656086>`
+})
+});
 beast.on('playerChange', (oldPlayer, newPlayer) => {
     console.log(oldPlayer.warOptedIn, newPlayer.warOptedIn);
 return lib.discord.channels['@0.3.2'].messages.create({
