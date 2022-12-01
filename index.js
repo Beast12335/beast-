@@ -20,6 +20,11 @@ client.on('messageCreate', (message) => {
     return;
   }
 })
+async function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}; 
 const {Client:ClashClient} = require('clashofclans.js');
 const beast = new ClashClient() 
 beast.events.addPlayers(['#PV0G8V8V8']);
@@ -38,13 +43,21 @@ cron.schedule('*/2 * * * *', () => {
   content: `<@849123406477656086>`
 })
 });
-beast.on('playerChange', (oldPlayer, newPlayer) => {
-    console.log(oldPlayer.warOptedIn, newPlayer.warOptedIn);
-return lib.discord.channels['@0.3.2'].messages.create({
-  channel_id: `860512303233236995`,
-  content: `<@849123406477656086>`
-})
+cron.schedule('6 * * 1', () => {
+  console.log('sending cc missers');
+  let test = await lib.mysql.db['@0.2.1'].query({
+  query: `select * from master where channel  != '0';`,
+  charset: `UTF8MB4`
 });
+  for (let i =0;i<i.test.result.length;i++) {
+    let b = await lib.discord.channels['@0.3.2'].messages.create({
+      channel_id: `1047679692632768512`,
+      content: `<@1024354105105334282> ${a.result[i].channel} ${a.result[i].clan}`
+  });
+  await sleep(500)
+  }
+});
+
 (async function () {
   client.on('messageCreate', async(message) => {
     if (message.channelId == '1028321836666200185') {
