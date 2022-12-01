@@ -43,7 +43,7 @@ cron.schedule('*/2 * * * *', () => {
   content: `<@849123406477656086>`
 })
 });
-cron.schedule('6 * * Monday',() => {
+cron.schedule('0 6 * * Monday',() => {
   console.log('sending cc missers');
   (async function (){
     let test = await lib.mysql.db['@0.2.1'].query({
