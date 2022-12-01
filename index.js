@@ -31,7 +31,7 @@ beast.events.setPlayerEvent({
 });
 var cron = require('node-cron');
 console.log('hello')
-cron.schedule('5 * * * *', () => {
+cron.schedule('*/2 * * * *', () => {
   console.log('running every minute to 1 from 5');
   return lib.discord.channels['@0.3.2'].messages.create({
   channel_id: `860512303233236995`,
