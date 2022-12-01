@@ -43,19 +43,21 @@ cron.schedule('*/2 * * * *', () => {
   content: `<@849123406477656086>`
 })
 });
-cron.schedule('6 * * 1', async() => {
+cron.schedule('6 * * 1',() => {
   console.log('sending cc missers');
-  let test = await lib.mysql.db['@0.2.1'].query({
-  query: `select * from master where channel  != '0';`,
-  charset: `UTF8MB4`
-});
-  for (let i =0;i<i.test.result.length;i++) {
-    let b = await lib.discord.channels['@0.3.2'].messages.create({
-      channel_id: `1047679692632768512`,
-      content: `<@1024354105105334282> ${a.result[i].channel} ${a.result[i].clan}`
+  (async function (){
+    let test = await lib.mysql.db['@0.2.1'].query({
+    query: `select * from master where channel  != '0';`,
+    charset: `UTF8MB4`
   });
-  await sleep(500)
-  }
+    for (let i =0;i<i.test.result.length;i++) {
+      let b = await lib.discord.channels['@0.3.2'].messages.create({
+        channel_id: `1047679692632768512`,
+        content: `<@1024354105105334282> ${a.result[i].channel} ${a.result[i].clan}`
+    });
+    await sleep(500)
+    }
+})();
 });
 
 (async function () {
