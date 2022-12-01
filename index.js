@@ -43,7 +43,7 @@ cron.schedule('*/2 * * * *', () => {
   content: `<@849123406477656086>`
 })
 });
-cron.schedule('6 * * 1', () => {
+cron.schedule('6 * * 1', async() => {
   console.log('sending cc missers');
   let test = await lib.mysql.db['@0.2.1'].query({
   query: `select * from master where channel  != '0';`,
