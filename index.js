@@ -60,6 +60,24 @@ cron.schedule('0 6 * * Monday',() => {
 })();
 });
 
+// cc rmd
+cron.schedule('0 8 * * Friday',() => {
+  console.log('sending cc start');
+  (async function (){
+    let test = await lib.mysql.db['@0.2.1'].query({
+    query: `select * from claims;`,
+    charset: `UTF8MB4`
+});
+    for (let i=0;i<test.result.length;i++) {
+      await lib.discord.channels['@0.3.2'].messages.create({
+        channel_id: `1048112551252205569`,
+          content: `<@1024354105105334282> ${test.result[i].dc}`
+  });
+    await sleep(250) 
+}
+})();
+});
+
 (async function () {
   client.on('messageCreate', async(message) => {
     if (message.channelId == '1028321836666200185') {
