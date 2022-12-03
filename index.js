@@ -27,56 +27,13 @@ async function sleep(ms) {
 }; 
 const {Client:ClashClient} = require('clashofclans.js');
 const beast = new ClashClient() 
-beast.events.addPlayers(['#PV0G8V8V8']);
-beast.events.setPlayerEvent({
-    name: 'playerChange',
-    filter: (oldPlayer, newPlayer) => {
-        return oldPlayer.warOptedIn !== newPlayer.warOptedIn;
-    }
-});
+
 var cron = require('node-cron');
-console.log('hello')
-cron.schedule('*/2 * * * *', () => {
-  console.log('running every minute to 1 from 5');
-  return lib.discord.channels['@0.3.2'].messages.create({
-  channel_id: `860512303233236995`,
-  content: `<@849123406477656086>`
-})
-});
-cron.schedule('0 6 * * Monday',() => {
-  console.log('sending cc missers');
-  (async function (){
-    let test = await lib.mysql.db['@0.2.1'].query({
-    query: `select * from master where channel  != '0';`,
-    charset: `UTF8MB4`
-  });
-    for (let i =0;i<i.test.result.length;i++) {
-      let b = await lib.discord.channels['@0.3.2'].messages.create({
-        channel_id: `1047679692632768512`,
-        content: `<@1024354105105334282> ${a.result[i].channel} ${a.result[i].clan}`
-    });
-    await sleep(500)
-    }
-})();
-});
+
+
 
 // cc rmd
-cron.schedule('0 8 * * Friday',() => {
-  console.log('sending cc start');
-  (async function (){
-    let test = await lib.mysql.db['@0.2.1'].query({
-    query: `select * from claims;`,
-    charset: `UTF8MB4`
-});
-    for (let i=0;i<test.result.length;i++) {
-      await lib.discord.channels['@0.3.2'].messages.create({
-        channel_id: `1048112551252205569`,
-          content: `<@1024354105105334282> ${test.result[i].dc}`
-  });
-    await sleep(250) 
-}
-})();
-});
+
 
 (async function () {
   client.on('messageCreate', async(message) => {
