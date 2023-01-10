@@ -1,3 +1,4 @@
+/*
 const lib = require('lib')({token: process.env['token']});
 const mySecret = process.env['dtoken']
 const {Client, GatewayIntentBits} = require('discord.js');
@@ -187,3 +188,9 @@ var cron = require('node-cron');
     await beast.events.init();
 })();
 client.login(mySecret)
+*/
+var cron = require('node-cron');
+console.log('hello')
+cron.schedule('1-5 * * * *', () => {
+  console.log('running every minute to 1 from 5');
+});
